@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Pre-commit hook to prevent modifications to protected files
+
+# Get the list of files being committed
+files=$(git diff --cached --name-only --diff-filter=ACMR)
+
+# Check if minimatch is installed
+if ! npm list minimatch > /dev/null 2>&1; then
+  echo "⚠️ Warning: minimatch package is required for the protect-files script."
+  echo "Please install it with: npm install minimatch"
+  echo "Skipping protected files check for now."
+  exit 0
+fi
+
+# Check each file against the protected files list
+for file in $files; do
+  # Skip if file doesn't exist (e.g., it was deleted)
+  [ -f "$file" ] || continue
+  
+  # Run the protect-files script on the file
+  node scripts/protect-files.js "$file"
+  
+  # If the script exits with an error, prevent the commit
+  if [ $? -ne 0 ]; then
+    echo "❌ Commit aborted due to protected file modification."
+    exit 1
+  fi
+done
+
+# All files passed the check, allow the commit
+exit 0

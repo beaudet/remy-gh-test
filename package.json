@@ -1,0 +1,38 @@
+{
+  "name": "remy-ai-planner-template",
+  "version": "1.0.0",
+  "description": "AI planning and orchestration system with protected files policy - GitHub Template",
+  "main": "src/index.js",
+  "scripts": {
+    "install-hooks": "node scripts/install-hooks.js",
+    "check-protected": "node scripts/protect-files.js",
+    "test": "node scripts/test-protection.js",
+    "test:ci": "node scripts/test-protection.js --ci-mode",
+    "test:protected-files": "node scripts/test-protection.js",
+    "posttemplate": "node scripts/setup-template.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OWNER/REPOSITORY.git"
+  },
+  "keywords": [
+    "ai",
+    "planning",
+    "orchestration",
+    "protected-files",
+    "template"
+  ],
+  "author": "National Gallery of Art",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/OWNER/REPOSITORY/issues"
+  },
+  "homepage": "https://github.com/OWNER/REPOSITORY#readme",
+  "dependencies": {
+    "minimatch": "^5.1.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

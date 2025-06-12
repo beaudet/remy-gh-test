@@ -1,0 +1,37 @@
+name: remy-ai-planner-template
+description: AI planning and orchestration system with protected files policy
+usage: >
+  This template provides a protected files system that prevents modifications to critical project files.
+  It's ideal for projects that need to maintain the integrity of certain files.
+
+about:
+  template_type: project
+  features:
+    - protected-files-system
+    - git-hooks
+    - documentation
+    - configuration
+
+configuration:
+  has_wiki: false
+  has_projects: false
+  has_downloads: true
+  is_template: true
+
+files:
+  - path: TEMPLATE_README.md
+    destination: README.md
+    required: true
+  - path: .protected-files.config.js
+    required: true
+  - path: scripts/
+    required: true
+  - path: .git-hooks/
+    required: true
+  - path: docs/
+    required: true
+
+post_create:
+  - npm install
+  - npm run install-hooks
+  - npm test
